@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react()],
   base: "/PapierComputer/",
   test: {
-    environment: "node", // pure logic, no DOM needed for these tests
+    environment: "node",
   },
 });
