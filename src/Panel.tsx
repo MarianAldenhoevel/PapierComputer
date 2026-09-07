@@ -1,4 +1,4 @@
-// Panel.tsx
+// Ein wiederverwendbares dekorierbares Panel-Element.
 import type { ReactNode } from "react";
 
 interface PanelProps {

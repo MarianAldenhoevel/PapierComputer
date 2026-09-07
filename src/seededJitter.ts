@@ -1,4 +1,4 @@
-// Organic visual scatter for the matches.
+// Organic repreatable pseudo-random visual scatter for the matches.
 
 function seededFraction(n: number): number {
   const x = Math.sin(n) * 43758.5453;

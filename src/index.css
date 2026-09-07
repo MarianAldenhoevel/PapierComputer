@@ -23,6 +23,10 @@ body {
   font-family: var(--font-sans);
 }
 
+.centered {
+  text-align: center;
+}
+
 .page {
   max-width: 900px;
   margin: 0 auto;
@@ -159,18 +163,18 @@ td input {
   box-sizing: border-box;
 }
 
+tr.pc {
+  background-color: var(--color-pc-highlight);
+}
+
 table.machine_registers {
   table-layout: fixed;
   width: 100%;
 }
 
 table.machine_registers :is(th, td).col_name { width: 15%; text-align: right;}
-table.machine_registers :is(th, td).col_value { width: 15%; }
-table.machine_registers :is(th, td).col_matches { width: 70%; }
-
-tr.pc {
-  background-color: var(--color-pc-highlight);
-}
+table.machine_registers :is(th, td).col_value { width: 20%; }
+table.machine_registers :is(th, td).col_matches { width: 65%; }
 
 .assembler-heading {
   justify-content: space-between;
@@ -240,8 +244,4 @@ table.machine_program :is(th, td).col_pen { width: 60%; vertical-align: middle; 
   width: 100%;
   height: auto;
   margin: 1em auto;
-}
-
-.centered {
-  text-align: center;
 }

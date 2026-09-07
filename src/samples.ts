@@ -1,3 +1,4 @@
+// Die Beispielprogramme für den Assembler.
 export interface Sample {
   name: string;
   source: string;

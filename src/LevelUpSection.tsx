@@ -1,4 +1,4 @@
-// LevelUpSection.tsx
+// Mehr beschreibender Text.
 export function LevelUpSection() {
   return (
     <>

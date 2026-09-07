@@ -1,4 +1,3 @@
-// MatchDisplay.tsx
 import { jitter, seedOf } from "./seededJitter";
 
 interface MatchDisplayProps {
@@ -17,7 +16,7 @@ function chunk<T>(items: T[], size: number): T[][] {
 }
 
 export function MatchDisplay({ seed, count }: MatchDisplayProps) {
-  const safeCount = Math.max(0, Math.floor(count));
+  const safeCount = Math.max(0, Math.min(count, 99)); // Nur zwischen 0 un 99 Streichhölzer rendern.
   const base = seedOf(seed);
   const matchIndices = Array.from({ length: safeCount }, (_, i) => i);
 

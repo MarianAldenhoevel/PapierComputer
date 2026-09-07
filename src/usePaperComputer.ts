@@ -1,3 +1,4 @@
+// Hook, der die Papiercomputer-Engine kapselt und den React-Komponenten eine einfache Schnittstelle bietet.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Machine, REGISTER_NAMES, type MachineRunState, type Registers, type RegisterName } from "./engine/Machine";
 import { assemble } from "./engine/Assembler";
@@ -35,12 +36,9 @@ function desiredRowCount(program: string[]): number {
 }
 
 export function usePaperComputer() {
+    // Die Maschine lebt in einer Ref, nicht in State. Sie ist mutable. State ist ein Snapshot der Maschine.
     const machineRef = useRef(new Machine());
 
-    // this initializer runs exactly once, on mount, before the first commit.
-    // Seeding state from a ref's initial value here is the documented 
-    // pattern (react.dev/reference/react/useRef). The ref is never read 
-    // anywhere else during render, only in event handlers and the effect below.
     // eslint-disable-next-line react-hooks/refs
     const [state, setState] = useState<MachineSnapshot>(() =>
         snapshot(machineRef.current),
@@ -103,10 +101,6 @@ export function usePaperComputer() {
         }
     }, [loadProgram]);
 
-    // Derived, not synced: "actually running" is just "user asked to run" AND
-    // "the machine still has something to do." Once state.status leaves "ok"
-    // this becomes false automatically on the next render — no effect needed
-    // to push that fact back into isRunning.
     const running = isRunning && state.status === "ok";
 
     useEffect(() => {

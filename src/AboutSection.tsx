@@ -1,4 +1,4 @@
-// AboutSection.tsx
+// Bloß beschreibender Text.
 export function AboutSection() {
   return (
     <>

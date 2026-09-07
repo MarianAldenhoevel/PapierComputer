@@ -1,3 +1,4 @@
+// MAIN. Verwendet den usePaperComputer-Hook und baut alle Komponenten zur UI zusammen.
 import { usePaperComputer } from "./usePaperComputer";
 import { Panel } from "./Panel";
 import { ControlPanel } from "./ControlPanel";
@@ -7,13 +8,13 @@ import { AssemblerPanel } from "./AssemblerPanel";
 import { AboutSection } from "./AboutSection";
 import { LevelUpSection } from "./LevelUpSection";
 
-function App() {
+export default function App() {
   const pc = usePaperComputer();
 
   return (
     <div className="page">
       <header>
-        <h1>Paper Computer</h1>
+        <h1>Papiercomputer</h1>
       </header>
 
       <AboutSection />
@@ -53,5 +54,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

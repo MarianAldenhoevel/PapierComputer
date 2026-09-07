@@ -1,14 +1,9 @@
+// Test für den Assembler.
+//
+// Ein Test führt ein assembliertes Programm auf der Maschine aus und prüft das Ergebnis.
 import { describe, it, expect } from "vitest";
 import { assemble } from "./Assembler";
 import { Machine, REGISTER_NAMES } from "./Machine";
-
-describe("Assembler", () => {
-    it("rejects a label that collides with a register name", () => {
-        const result = assemble(["A: inc A", "stp"], REGISTER_NAMES);
-        expect(result.ok).toBe(false);
-    });
-    // ...rest unchanged, "REGISTER_NAMES" constant deleted from this file...
-});
 
 describe("Assembler", () => {
     it("rejects a label that collides with a register name", () => {
@@ -21,7 +16,7 @@ describe("Assembler", () => {
 
     it("resolves jmp targets by label to addresses", () => {
         const result = assemble(
-            ["start: inc A", "jmp start"], 
+            [";Comment", "", "start: inc A", "jmp start"], 
             REGISTER_NAMES
         );
         expect(result).toEqual({ ok: true, program: ["inc A", "jmp 0"] });
@@ -33,7 +28,7 @@ describe("Assembler", () => {
             REGISTER_NAMES
         );
         expect(result.ok).toBe(true);
-        if (!result.ok) return; // narrows the type for the rest of the test
+        if (!result.ok) return; 
 
         const m = new Machine();
         m.registers.A = 7;

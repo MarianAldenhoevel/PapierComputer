@@ -1,5 +1,7 @@
-// RegisterInput.tsx
-import { useEffect, useState } from "react";
+// Ein Eingabefeld für eine Zahl für einen Registerwert. Die Besonderheit ist, dass hier
+// eine beliebige Ziffer über den vorhandenen Wert eingegeben werden kann. Bei der direkten
+// Eingabe in das Registerfeld kann man sonst nicht von 0 -> 4 gehen, sondern muss 0 -> 04 sagen.
+import { useState } from "react";
 import type { RegisterName } from "./engine/Machine";
 
 interface RegisterInputProps {
@@ -10,24 +12,20 @@ interface RegisterInputProps {
 
 export function RegisterInput({ name, value, onChange }: RegisterInputProps) {
   const [text, setText] = useState(String(value));
+  const [lastSeenValue, setLastSeenValue] = useState(value);
 
-  // Resync the displayed text whenever the *actual* register value changes
-  // for a reason other than this input's own typing (e.g. a Step just ran).
-  // This intentionally does NOT fire on every keystroke — only when `value`
-  // itself changes, which is exactly the "someone else changed it" signal.
-  useEffect(() => {
+  if (value !== lastSeenValue) {
+    setLastSeenValue(value);
     setText(String(value));
-  }, [value]);
+  }
 
   return (
     <input
-      type="text"
-      inputMode="numeric"
-      pattern="[0-9]*"
+      type="number"
       value={text}
       onChange={(e) => {
         const raw = e.target.value;
-        setText(raw); // always show exactly what was typed, no interference
+        setText(raw);
         const parsed = parseInt(raw, 10);
         onChange(name, isNaN(parsed) ? 0 : parsed);
       }}
