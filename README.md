@@ -1,4 +1,4 @@
-#Was ist das?
+# Was ist das?
 
 Der Know-how-Computer oder WDR-Papiercomputer besteht aus bedrucktem Papier. Er hat einen "Programmspeicher" in den man schriftlich ein Programm in einer fiktiven Assemblersprache aus nur fünf Befehlen eintragen kann.
 
