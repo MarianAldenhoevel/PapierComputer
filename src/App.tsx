@@ -33,7 +33,7 @@ function App() {
       </Panel>
 
       <div className="machine-grid">
-        <Panel title="Program" className="machine-program">
+        <Panel title="Program" className="machine_program">
           <ProgramTable
             program={pc.state.program}
             pc={pc.state.pc}
@@ -42,7 +42,7 @@ function App() {
           />
         </Panel>
 
-        <Panel title="Registers" className="machine-registers">
+        <Panel title="Registers" className="machine_registers">
           <RegisterTable registers={pc.state.registers} onChange={pc.setRegister} />
         </Panel>
       </div>

@@ -9,8 +9,11 @@
   --color-code-bg: #f9f2f4;
   --color-code-text: #c7254e;
   --color-pc-highlight: #ffff88;
+  
   --font-mono: Menlo, Monaco, Consolas, "Courier New", monospace;
   --font-sans: "Open Sans", system-ui, sans-serif;
+  
+  --row-content-height: 28px;
 }
 
 body {
@@ -36,8 +39,7 @@ table {
   margin: 1em 0;
 }
 
-table th,
-table td {
+table :is(th, td) {
   border: 1px solid var(--color-panel-border);
   padding: 0.5em 0.75em;
   text-align: left;
@@ -136,6 +138,7 @@ input[type="number"] {
   border: 1px solid var(--color-panel-border);
   border-radius: 3px;
   padding: 2px 4px;
+  height: var(--row-content-height);
 }
 
 .machine-grid {
@@ -151,21 +154,19 @@ input[type="number"] {
   }
 }
 
-table.machine_registers th.col_name,
-table.machine_registers td.col_name {
-  width: 25%;
-  text-align: right;
+td input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-table.machine_registers th.col_value,
-table.machine_registers td.col_value {
-  width: 25%;
+table.machine_registers {
+  table-layout: fixed;
+  width: 100%;
 }
 
-table.machine_registers th.col_matches,
-table.machine_registers td.col_matches {
-  width: 50%;
-}
+table.machine_registers :is(th, td).col_name { width: 15%; text-align: right;}
+table.machine_registers :is(th, td).col_value { width: 15%; }
+table.machine_registers :is(th, td).col_matches { width: 70%; }
 
 tr.pc {
   background-color: var(--color-pc-highlight);
@@ -183,46 +184,54 @@ ul.samples {
   gap: 0.4em;
 }
 
-table.machine_program td.col_addr {
-  width: 10%;
-  text-align: right;
+table.machine_program {
+  table-layout: fixed;
+  width: 100%;
 }
 
-table.machine_program td.col_cmd {
-  width: 25%;
-}
-
-table.machine_program td.col_cmd input.code {
-  width: 6em;
-}
-
-table.machine_program td.col_pen {
-  width: 65%;
-  vertical-align: middle;
-}
+table.machine_program :is(th, td).col_addr { width: 15%; text-align: right; }
+table.machine_program :is(th, td).col_cmd { width: 25%; }
+table.machine_program :is(th, td).col_pen { width: 60%; vertical-align: middle; }
 
 .pen-icon {
-  height: 1.6em;
-  vertical-align: middle;
+  max-height: 1.6em;
+  max-width: 100%;
+  width: auto;
+  height: var(--row-content-height);
+  display: block;
 }
 
 .match-display {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.8em;
+  flex-wrap: nowrap;
   align-items: center;
-  min-height: 1.5em;
+  gap: 0.8em;
+  overflow: hidden;
 }
 
 .match-group {
-  display: flex;
-  padding: 2px;
+  position: relative; /* the anchor the diagonal match centers itself against */
+  display: inline-flex;
+  align-items: flex-end;
+  height: var(--row-content-height);
+  padding: 0 0px;
+  flex: 0 0 auto; /* fixed size, never shrinks to fit available space */
 }
 
 .match {
   width: 8px;
   height: 26px;
-  margin-right: -3px; /* slight overlap so a bundle reads as one group */
+  margin-right: -3px;
+  flex: 0 0 auto;
+}
+
+.match-diagonal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 26px;
+  z-index: 1; /* sits visually on top of the four upright matches */
 }
 
 .about-image {

@@ -1,3 +1,4 @@
+// MatchDisplay.tsx
 import { jitter, seedOf } from "./seededJitter";
 
 interface MatchDisplayProps {
@@ -24,8 +25,24 @@ export function MatchDisplay({ seed, count }: MatchDisplayProps) {
     <div className="match-display" aria-label={`${safeCount} Streichhölzer`}>
       {chunk(matchIndices, GROUP_SIZE).map((group, groupIndex) => (
         <div className="match-group" key={groupIndex}>
-          {group.map((matchIndex) => {
+          {group.map((matchIndex, posInGroup) => {
             const s = base + matchIndex * 101;
+            const isDiagonal = group.length === GROUP_SIZE && posInGroup === GROUP_SIZE - 1;
+
+            if (isDiagonal) {
+              return (
+                <img
+                  key={matchIndex}
+                  src="/match.png"
+                  alt=""
+                  className="match match-diagonal"
+                  style={{
+                    transform: `translate(-50%, -50%) rotate(${45 + jitter(s, 8)}deg)`,
+                  }}
+                />
+              );
+            }
+
             return (
               <img
                 key={matchIndex}
@@ -33,7 +50,7 @@ export function MatchDisplay({ seed, count }: MatchDisplayProps) {
                 alt=""
                 className="match"
                 style={{
-                  transform: `translate(${jitter(s, 3)}px, ${jitter(s + 1, 3)}px) rotate(${jitter(s + 2, 10)}deg)`,
+                  transform: `translate(${jitter(s, 2)}px, ${jitter(s + 1, 2)}px) rotate(${jitter(s + 2, 10)}deg)`,
                 }}
               />
             );

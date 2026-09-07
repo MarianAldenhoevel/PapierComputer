@@ -141,7 +141,7 @@ export function AboutSection() {
       </p>
       <p>
         Die Reset-Taste setzt den PC zurück, so daß als nächstes der Befehl an
-        Programmspeicher-Position 0 ausgeführt wird. Progammspeicher und
+        Programmspeicher-Position 0 ausgeführt wird. Programmspeicher und
         Registerinhalte bleiben dabei unangetastet.
       </p>
 
