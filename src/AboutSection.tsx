@@ -1,4 +1,6 @@
 // Bloß beschreibender Text.
+import { publicUrl } from "./publicUrl";
+
 export function AboutSection() {
   return (
     <>
@@ -32,9 +34,9 @@ export function AboutSection() {
         in Namibia im Schulunterricht verwendet.
       </p>
       <p>
-        <a href="/occ_know_how.jpg" target="_blank" rel="noreferrer">
+        <a href={publicUrl("occ_know_how.jpg")} target="_blank" rel="noreferrer">
           <img
-            src="/occ_know_how.jpg"            
+            src={publicUrl("occ_know_how.jpg")}
             alt="Der originale WDR Know-how-Computer aus Papier"
             className="about-image"
           />

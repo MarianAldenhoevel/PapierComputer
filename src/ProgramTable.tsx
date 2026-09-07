@@ -1,3 +1,5 @@
+import { publicUrl } from "./publicUrl";
+
 interface ProgramTableProps {
     program: string[];
     pc: number;
@@ -29,7 +31,7 @@ export function ProgramTable({ program, pc, rowCount, onChange }: ProgramTablePr
             </td>
             <td className="col_pen">
               {addr === pc && (
-                <img src="/pen.png" alt="Programmzeiger" className="pen-icon" />
+                <img src={publicUrl("pen.png")} alt="Programmzeiger" className="pen-icon" />
               )}
             </td>
           </tr>

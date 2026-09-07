@@ -1,4 +1,5 @@
 import { jitter, seedOf } from "./seededJitter";
+import { publicUrl } from "./publicUrl";
 
 interface MatchDisplayProps {
   seed: string;
@@ -32,7 +33,7 @@ export function MatchDisplay({ seed, count }: MatchDisplayProps) {
               return (
                 <img
                   key={matchIndex}
-                  src="/match.png"
+                  src={publicUrl("match.png")}
                   alt=""
                   className="match match-diagonal"
                   style={{
@@ -45,7 +46,7 @@ export function MatchDisplay({ seed, count }: MatchDisplayProps) {
             return (
               <img
                 key={matchIndex}
-                src="/match.png"
+                src={publicUrl("match.png")}
                 alt=""
                 className="match"
                 style={{
