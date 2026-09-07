@@ -5,6 +5,7 @@ import { defineConfig } from "vitest/config";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/PapierComputer/",
   test: {
     environment: "node", // pure logic, no DOM needed for these tests
   },
